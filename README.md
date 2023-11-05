@@ -3,6 +3,20 @@
 [![Website](https://img.shields.io/badge/Visit%20our-Website-0099cc?style=for-the-badge)](https://robotics-sensors.github.io)
 [![Discord](https://img.shields.io/badge/Join%20our-Discord-7289DA?logo=discord&style=for-the-badge)](https://discord.gg/Yc72nd4w)
 [![Sponsor](https://img.shields.io/badge/Sponsor-Robotics%20Sensors%20Research-red?style=for-the-badge&logo=github)](https://github.com/sponsors/Robotics-Sensors)
+
+# Stats
+[![GitHub stars](https://img.shields.io/github/stars/Robotics-Sensors/humanoid_robot_demos.svg?style=social)](https://github.com/Robotics-Sensors/humanoid_robot_demos/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Robotics-Sensors/humanoid_robot_demos.svg?style=social)](https://github.com/Robotics-Sensors/humanoid_robot_demos/network)
+[![GitHub watchers](https://img.shields.io/github/watchers/Robotics-Sensors/humanoid_robot_demos.svg?style=social)](https://github.com/Robotics-Sensors/humanoid_robot_demos/watchers)
+
+[![GitHub issues](https://img.shields.io/github/issues/Robotics-Sensors/humanoid_robot_demos.svg)](https://github.com/Robotics-Sensors/humanoid_robot_demos/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/Robotics-Sensors/humanoid_robot_demos.svg)](https://github.com/Robotics-Sensors/humanoid_robot_demos/pulls)
+[![GitHub license](https://img.shields.io/github/license/Robotics-Sensors/humanoid_robot_demos.svg)](https://github.com/Robotics-Sensors/humanoid_robot_demos/blob/main/LICENSE)
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/Robotics-Sensors/humanoid_robot_demos.svg)](https://github.com/Robotics-Sensors/humanoid_robot_demos/commits)
+[![Visitor & Github Clones](https://img.shields.io/badge/dynamic/json?color=2e8b57&label=Visitor%20%26%20GitHub%20Clones&query=$.count&url=https://api.github.com/repos/Robotics-Sensors/humanoid_robot_demos/traffic)](https://github.com/Robotics-Sensors/humanoid_robot_demos)
+
+
 --------------------------------------------------------------------------------------------------------
 # Repository Website
 https://robotics-sensors.github.io/humanoid_robot_demos
