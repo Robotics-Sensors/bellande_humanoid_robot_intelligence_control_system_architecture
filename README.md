@@ -29,20 +29,20 @@ Welcome to the {BR&SRI} Humanoid Robot Intelligence Control System Demos reposit
 
 ## 🌐 Repository Website
 
-Explore our [repository website](https://robotics-sensors.github.io/humanoid_robot_intelligence_control_system_demos) for detailed documentation, tutorials, and additional information about our humanoid robot intelligence control system.
+Explore our [repository website](https://robotics-sensors.github.io/bellande_humanoid_robot_intelligence_control_system_demos) for detailed documentation, tutorials, and additional information about our humanoid robot intelligence control system.
 
 ---
 
 ### 🔄 Updates and Versions
 
-- **Updated Version:** [humanoid_robot_intelligence_control_system_module](https://github.com/Robotics-Sensors/humanoid_robot_intelligence_control_system_demos)
+- **Updated Version:** [humanoid_robot_intelligence_control_system_module](https://github.com/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_demos)
 - **Old Version/Previous Used for Different Context:** [ROBOTIS-OP3-Demo](https://github.com/ROBOTIS-GIT/ROBOTIS-OP3-Demo)
 
 ---
 
 # 🎉 Latest Release
 
-[![Latest Release](https://img.shields.io/github/v/release/Robotics-Sensors/humanoid_robot_intelligence_control_system_tools?style=for-the-badge&color=yellow)](https://github.com/Robotics-Sensors/humanoid_robot_intelligence_control_system_demos/releases/)
+[![Latest Release](https://img.shields.io/github/v/release/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_tools?style=for-the-badge&color=yellow)](https://github.com/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_demos/releases/)
 
 ---
 
