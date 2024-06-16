@@ -28,6 +28,7 @@ the License.
   <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
 
   <build_depend condition="$ROS_VERSION == 1">roscpp</build_depend>
+  <build_depend condition="$ROS_VERSION == 1">rospy</build_depend>
   <build_depend condition="$ROS_VERSION == 1">std_msgs</build_depend>
   <build_depend condition="$ROS_VERSION == 1">sensor_msgs</build_depend>
   <build_depend condition="$ROS_VERSION == 1">
@@ -35,6 +36,7 @@ the License.
   <build_depend condition="$ROS_VERSION == 1">humanoid_robot_intelligence_control_system_manager</build_depend>
 
   <build_export_depend condition="$ROS_VERSION == 1">roscpp</build_export_depend>
+  <build_export_depend condition="$ROS_VERSION == 1">rospy</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">std_msgs</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">sensor_msgs</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">
@@ -43,6 +45,7 @@ the License.
     humanoid_robot_intelligence_control_system_manager</build_export_depend>
 
   <exec_depend condition="$ROS_VERSION == 1">roscpp</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 1">rospy</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">std_msgs</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">sensor_msgs</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">
@@ -52,14 +55,16 @@ the License.
 
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
 
-  <build_depend condition="$ROS_VERSION == 2">roscpp</build_depend>
+  <build_depend condition="$ROS_VERSION == 2">rclcpp</build_depend>
+  <build_depend condition="$ROS_VERSION == 2">rclpy</build_depend>
   <build_depend condition="$ROS_VERSION == 2">std_msgs</build_depend>
   <build_depend condition="$ROS_VERSION == 2">sensor_msgs</build_depend>
   <build_depend condition="$ROS_VERSION == 2">
     humanoid_robot_intelligence_control_system_controller_msgs</build_depend>
   <build_depend condition="$ROS_VERSION == 2">humanoid_robot_intelligence_control_system_manager</build_depend>
 
-  <build_export_depend condition="$ROS_VERSION == 2">roscpp</build_export_depend>
+  <build_export_depend condition="$ROS_VERSION == 2">rclcpp</build_export_depend>
+  <build_export_depend condition="$ROS_VERSION == 2">rclpy</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">std_msgs</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">sensor_msgs</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">
@@ -67,7 +72,8 @@ the License.
   <build_export_depend condition="$ROS_VERSION == 2">
     humanoid_robot_intelligence_control_system_manager</build_export_depend>
 
-  <exec_depend condition="$ROS_VERSION == 2">roscpp</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">rclcpp</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">rclpy</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">std_msgs</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">sensor_msgs</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">
