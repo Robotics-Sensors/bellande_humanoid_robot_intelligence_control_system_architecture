@@ -25,7 +25,13 @@ if($ENV{ROS_VERSION} EQUAL 1)
     std_msgs
   )
 else()
-  find_package(ament_cmake REQUIRED)
+  find_package(
+    ament_cmake REQUIRED COMPONENTS
+    humanoid_robot_intelligence_control_system_controller_msgs
+    roscpp
+    sensor_msgs
+    std_msgs
+  )
 endif()
 
 
@@ -41,31 +47,23 @@ if($ENV{ROS_VERSION} EQUAL 1)
   )
 endif()
 
+# Install Python scripts for both ROS 1
+if($ENV{ROS_VERSION} EQUAL 1)
+  catkin_install_python(
+    PROGRAMS
+    src/read_write.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+  )
+endif()
 
-include_directories(${catkin_INCLUDE_DIRS})
-
-add_executable(
-  read_write
-  src/read_write.cpp
-)
-
-add_dependencies(
-  read_write
-  ${${PROJECT_NAME}_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
-
-target_link_libraries(
-  read_write
-  ${catkin_LIBRARIES}
-)
-
-install(
-  TARGETS read_write
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
-install(
-  DIRECTORY launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
+# Install Python scripts, configuration files, and launch files
+if($ENV{ROS_VERSION} EQUAL "1")
+    install(PROGRAMS src/read_write.py DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
+    install(DIRECTORY config/ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/config)
+    install(DIRECTORY launch/ DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch)
+else()
+    install(PROGRAMS src/read_write.py DESTINATION lib/${PROJECT_NAME})
+    install(DIRECTORY config/ DESTINATION share/${PROJECT_NAME}/config)
+    install(DIRECTORY launch/ DESTINATION share/${PROJECT_NAME}/launch)
+    ament_package()
+endif()
