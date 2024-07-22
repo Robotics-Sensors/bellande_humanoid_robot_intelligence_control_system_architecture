@@ -16,12 +16,10 @@ the License.
 -->
 
 <package format="3">
-  <name>humanoid_robot_intelligence_control_system_ball_detector</name>
-  <version>0.3.2</version>
+  <name>humanoid_robot_intelligence_control_system_object_detector</name>
+  <version>0.0.1</version>
   <description>
-    This package implements a circle-like shape detector of the input image
-    It requires and input image and publish, at frame rate, a marked image
-    and a stamped array of circle centers and radius.
+    This Package is for Object Detection, detecting objects like tools, or utilities
   </description>
   <license>Apache 2.0</license>
   <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>
