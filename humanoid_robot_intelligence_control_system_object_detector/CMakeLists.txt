@@ -22,13 +22,6 @@ if($ENV{ROS_VERSION} EQUAL 1)
     sensor_msgs
     geometry_msgs
     cv_bridge
-    message_generation
-  )
-
-  generate_messages(
-    DEPENDENCIES
-    std_msgs
-    geometry_msgs
   )
 
   catkin_package(
@@ -38,7 +31,6 @@ if($ENV{ROS_VERSION} EQUAL 1)
       sensor_msgs
       geometry_msgs
       cv_bridge
-      message_runtime
   )
 
 else()
@@ -55,7 +47,7 @@ if($ENV{ROS_VERSION} EQUAL 1)
   catkin_python_setup()
 
   catkin_install_python(PROGRAMS
-    scripts/object_detection_processor.py
+    src/object_detection_processor.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   )
 
@@ -67,7 +59,7 @@ else()
   ament_python_install_package(${PROJECT_NAME})
 
   install(PROGRAMS
-    scripts/object_detection_processor.py
+    src/object_detection_processor.py
     DESTINATION lib/${PROJECT_NAME}
   )
 

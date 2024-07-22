@@ -24,106 +24,38 @@ the License.
   <license>Apache 2.0</license>
   <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>
 
-
   <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
-
-  <build_depend condition="$ROS_VERSION == 1">roscpp</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">roslib</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">std_msgs</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">sensor_msgs</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">geometry_msgs</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">dynamic_reconfigure</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">cv_bridge</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">image_transport</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">boost</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">opencv3</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">yaml-cpp</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">message_generation</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">message_runtime</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">message_runtime</build_depend>
-  <build_depend condition="$ROS_VERSION == 1">usb_cam</build_depend>
-
-  <build_export_depend condition="$ROS_VERSION == 1">roscpp</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">roslib</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">std_msgs</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">sensor_msgs</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">geometry_msgs</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">dynamic_reconfigure</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">cv_bridge</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">image_transport</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">boost</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">opencv3</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">yaml-cpp</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">message_generation</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">message_runtime</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">message_runtime</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 1">usb_cam</build_export_depend>
-
-  <exec_depend condition="$ROS_VERSION == 1">roscpp</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">roslib</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">std_msgs</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">sensor_msgs</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">geometry_msgs</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">dynamic_reconfigure</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">cv_bridge</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">image_transport</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">boost</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">opencv3</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">yaml-cpp</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">message_generation</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">message_runtime</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">message_runtime</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 1">usb_cam</exec_depend>
-
-
   <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake_python</buildtool_depend>
 
-  <build_depend condition="$ROS_VERSION == 2">roscpp</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">roslib</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">std_msgs</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">sensor_msgs</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">geometry_msgs</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">dynamic_reconfigure</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">cv_bridge</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">image_transport</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">boost</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">opencv3</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">yaml-cpp</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">message_generation</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">message_runtime</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">message_runtime</build_depend>
-  <build_depend condition="$ROS_VERSION == 2">usb_cam</build_depend>
+  <!-- ROS 1 dependencies -->
+  <depend condition="$ROS_VERSION == 1">rospy</depend>
+  <depend condition="$ROS_VERSION == 1">std_msgs</depend>
+  <depend condition="$ROS_VERSION == 1">sensor_msgs</depend>
+  <depend condition="$ROS_VERSION == 1">geometry_msgs</depend>
+  <depend condition="$ROS_VERSION == 1">cv_bridge</depend>
+  <depend condition="$ROS_VERSION == 1">image_transport</depend>
+  <depend condition="$ROS_VERSION == 1">dynamic_reconfigure</depend>
+  <depend condition="$ROS_VERSION == 1">message_generation</depend>
+  <depend condition="$ROS_VERSION == 1">message_runtime</depend>
 
-  <build_export_depend condition="$ROS_VERSION == 2">roscpp</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">roslib</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">std_msgs</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">sensor_msgs</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">geometry_msgs</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">dynamic_reconfigure</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">cv_bridge</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">image_transport</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">boost</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">opencv3</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">yaml-cpp</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">message_generation</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">message_runtime</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">message_runtime</build_export_depend>
-  <build_export_depend condition="$ROS_VERSION == 2">usb_cam</build_export_depend>
+  <!-- ROS 2 dependencies -->
+  <depend condition="$ROS_VERSION == 2">rclpy</depend>
+  <depend condition="$ROS_VERSION == 2">std_msgs</depend>
+  <depend condition="$ROS_VERSION == 2">sensor_msgs</depend>
+  <depend condition="$ROS_VERSION == 2">geometry_msgs</depend>
+  <depend condition="$ROS_VERSION == 2">cv_bridge</depend>
+  <depend condition="$ROS_VERSION == 2">image_transport</depend>
+  <depend condition="$ROS_VERSION == 2">rosidl_default_generators</depend>
+  <depend condition="$ROS_VERSION == 2">rosidl_default_runtime</depend>
 
-  <exec_depend condition="$ROS_VERSION == 2">roscpp</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">roslib</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">std_msgs</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">sensor_msgs</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">geometry_msgs</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">dynamic_reconfigure</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">cv_bridge</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">image_transport</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">boost</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">opencv3</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">yaml-cpp</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">message_generation</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">message_runtime</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">message_runtime</exec_depend>
-  <exec_depend condition="$ROS_VERSION == 2">usb_cam</exec_depend>
+  <!-- Common dependencies -->
+  <depend>python3-opencv</depend>
+  <depend>python3-yaml</depend>
+  <depend>usb_cam</depend>
 
+  <export>
+    <build_type condition="$ROS_VERSION == 1">catkin</build_type>
+    <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
+  </export>
 </package>

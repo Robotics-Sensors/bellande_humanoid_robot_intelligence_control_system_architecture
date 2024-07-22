@@ -29,7 +29,7 @@ if($ENV{ROS_VERSION} EQUAL 1)
     humanoid_robot_intelligence_control_system_action_module_msgs
     cmake_modules
     humanoid_robot_intelligence_control_system_math
-    humanoid_robot_intelligence_control_system_ball_detector
+    humanoid_robot_intelligence_control_system_object_detector
   )
   find_package(Boost REQUIRED COMPONENTS thread)
   find_package(Eigen3 REQUIRED)
@@ -71,7 +71,7 @@ if($ENV{ROS_VERSION} EQUAL 1)
     humanoid_robot_intelligence_control_system_action_module_msgs
     cmake_modules
     humanoid_robot_intelligence_control_system_math
-    humanoid_robot_intelligence_control_system_ball_detector
+    humanoid_robot_intelligence_control_system_object_detector
     DEPENDS Boost EIGEN3
   )
 endif()

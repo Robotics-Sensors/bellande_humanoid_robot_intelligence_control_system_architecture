@@ -42,7 +42,7 @@ the License.
   <build_depend condition="$ROS_VERSION == 1">cmake_modules</build_depend>
   <build_depend condition="$ROS_VERSION == 1">humanoid_robot_intelligence_control_system_math</build_depend>
   <build_depend condition="$ROS_VERSION == 1">
-    humanoid_robot_intelligence_control_system_ball_detector</build_depend>
+    humanoid_robot_intelligence_control_system_object_detector</build_depend>
   <build_depend condition="$ROS_VERSION == 1">boost</build_depend>
   <build_depend condition="$ROS_VERSION == 1">eigen</build_depend>
   <build_depend condition="$ROS_VERSION == 1">yaml-cpp</build_depend>
@@ -66,7 +66,7 @@ the License.
   <build_export_depend condition="$ROS_VERSION == 1">cmake_modules</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">humanoid_robot_intelligence_control_system_math</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">
-    humanoid_robot_intelligence_control_system_ball_detector</build_export_depend>
+    humanoid_robot_intelligence_control_system_object_detector</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">boost</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">eigen</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 1">yaml-cpp</build_export_depend>
@@ -91,7 +91,7 @@ the License.
   <exec_depend condition="$ROS_VERSION == 1">cmake_modules</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">humanoid_robot_intelligence_control_system_math</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">
-    humanoid_robot_intelligence_control_system_ball_detector</exec_depend>
+    humanoid_robot_intelligence_control_system_object_detector</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">boost</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">eigen</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">yaml-cpp</exec_depend>
@@ -118,7 +118,7 @@ the License.
   <build_depend condition="$ROS_VERSION == 2">cmake_modules</build_depend>
   <build_depend condition="$ROS_VERSION == 2">humanoid_robot_intelligence_control_system_math</build_depend>
   <build_depend condition="$ROS_VERSION == 2">
-    humanoid_robot_intelligence_control_system_ball_detector</build_depend>
+    humanoid_robot_intelligence_control_system_object_detector</build_depend>
   <build_depend condition="$ROS_VERSION == 2">boost</build_depend>
   <build_depend condition="$ROS_VERSION == 2">eigen</build_depend>
   <build_depend condition="$ROS_VERSION == 2">yaml-cpp</build_depend>
@@ -142,7 +142,7 @@ the License.
   <build_export_depend condition="$ROS_VERSION == 2">cmake_modules</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">humanoid_robot_intelligence_control_system_math</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">
-    humanoid_robot_intelligence_control_system_ball_detector</build_export_depend>
+    humanoid_robot_intelligence_control_system_object_detector</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">boost</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">eigen</build_export_depend>
   <build_export_depend condition="$ROS_VERSION == 2">yaml-cpp</build_export_depend>
@@ -167,7 +167,7 @@ the License.
   <exec_depend condition="$ROS_VERSION == 2">cmake_modules</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">humanoid_robot_intelligence_control_system_math</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">
-    humanoid_robot_intelligence_control_system_ball_detector</exec_depend>
+    humanoid_robot_intelligence_control_system_object_detector</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">boost</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">eigen</exec_depend>
   <exec_depend condition="$ROS_VERSION == 2">yaml-cpp</exec_depend>
