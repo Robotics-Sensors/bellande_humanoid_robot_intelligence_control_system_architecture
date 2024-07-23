@@ -58,7 +58,7 @@ The repository has recently undergone significant updates. Older commits and cod
 
 🚀 For the latest versions and updates, visit our organization: [Robotics-Sensors](https://github.com/Robotics-Sensors).
 
-### 🧑‍💼 Maintainer
+### 🧑‍💼 Maintainer & Author
 
 Meet our dedicated maintainer, **Ronaldson Bellande**.
 
