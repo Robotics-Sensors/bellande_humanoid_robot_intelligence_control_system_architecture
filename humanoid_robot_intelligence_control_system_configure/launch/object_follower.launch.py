@@ -25,7 +25,7 @@ def ros1_launch_description():
     args = sys.argv[1:]
     
     # Construct the ROS 1 launch command
-    roslaunch_command = ["roslaunch", "humanoid_robot_intelligence_control_system_configure", "object_follow.launch"] + args
+    roslaunch_command = ["roslaunch", "humanoid_robot_intelligence_control_system_configure", "object_follower.launch"] + args
     
     roslaunch_command.extend([
         "usb_cam", "usb_cam_node", "name:=camera",
