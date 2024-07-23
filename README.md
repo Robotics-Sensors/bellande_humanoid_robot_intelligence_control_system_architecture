@@ -50,12 +50,6 @@ Explore our [repository website](https://robotics-sensors.github.io/bellande_hum
 
 ---
 
-## 📢 Important Announcement
-
-The repository has recently undergone significant updates. Older commits and codes are covered under the previous license, while new commits and codes fall under the new license.
-
----
-
 🚀 For the latest versions and updates, visit our organization: [Robotics-Sensors](https://github.com/Robotics-Sensors).
 
 ### 🧑‍💼 Maintainer & Author
