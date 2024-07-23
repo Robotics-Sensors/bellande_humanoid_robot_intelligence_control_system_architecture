@@ -25,16 +25,16 @@ Welcome to the {BR&SRI} Humanoid Robot Intelligence Control System architecture 
 
 ### 🚀 Key Repository Stats
 
-- ![GitHub stars](https://img.shields.io/github/stars/Robotics-Sensors/humanoid_robot_intelligence_control_system_architecture.svg?style=social) Starred by the community
-- ![GitHub forks](https://img.shields.io/github/forks/Robotics-Sensors/humanoid_robot_intelligence_control_system_architecture.svg?style=social) Forked by enthusiasts
-- ![GitHub watchers](https://img.shields.io/github/watchers/Robotics-Sensors/humanoid_robot_intelligence_control_system_architecture.svg?style=social) Watched by curious minds
+- ![GitHub stars](https://img.shields.io/github/stars/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_architecture.svg?style=social) Starred by the community
+- ![GitHub forks](https://img.shields.io/github/forks/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_architecture.svg?style=social) Forked by enthusiasts
+- ![GitHub watchers](https://img.shields.io/github/watchers/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_architecture.svg?style=social) Watched by curious minds
 
-- ![GitHub issues](https://img.shields.io/github/issues/Robotics-Sensors/humanoid_robot_intelligence_control_system_architecture.svg) Actively addressing issues
-- ![GitHub pull requests](https://img.shields.io/github/issues-pr/Robotics-Sensors/humanoid_robot_intelligence_control_system_architecture.svg) Welcoming contributions
-- ![GitHub license](https://img.shields.io/github/license/Robotics-Sensors/humanoid_robot_intelligence_control_system_architecture.svg) Licensed under Apache 2.0
+- ![GitHub issues](https://img.shields.io/github/issues/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_architecture.svg) Actively addressing issues
+- ![GitHub pull requests](https://img.shields.io/github/issues-pr/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_architecture.svg) Welcoming contributions
+- ![GitHub license](https://img.shields.io/github/license/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_architecture.svg) Licensed under Apache 2.0
 
-- ![GitHub last commit](https://img.shields.io/github/last-commit/Robotics-Sensors/humanoid_robot_intelligence_control_system_architecture.svg) Latest updates
-- ![Visitor & Github Clones](https://img.shields.io/badge/dynamic/json?color=2e8b57&label=Visitor%20%26%20GitHub%20Clones&query=$.count&url=https://api.github.com/repos/Robotics-Sensors/humanoid_robot_intelligence_control_system_architecture/traffic) Engaging with the community
+- ![GitHub last commit](https://img.shields.io/github/last-commit/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_architecture.svg) Latest updates
+- ![Visitor & Github Clones](https://img.shields.io/badge/dynamic/json?color=2e8b57&label=Visitor%20%26%20GitHub%20Clones&query=$.count&url=https://api.github.com/repos/Robotics-Sensors/bellande_humanoid_robot_intelligence_control_system_architecture/traffic) Engaging with the community
 
 ---
 
