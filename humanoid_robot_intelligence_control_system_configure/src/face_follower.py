@@ -15,18 +15,32 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import rospy
+import os
+import sys
 import math
+from std_msgs.msg import String
 from sensor_msgs.msg import JointState
-from std_msgs.msg import String, Bool
 from geometry_msgs.msg import Point
 from humanoid_robot_intelligence_control_system_walking_module_msgs.msg import WalkingParam
 from humanoid_robot_intelligence_control_system_walking_module_msgs.srv import GetWalkingParam
 
 class FaceFollower:
-    def __init__(self):
-        rospy.init_node('face_follower')
-        
+    def __init__(self, ros_version):
+        self.ros_version = ros_version
+        if self.ros_version == '1':
+            rospy.init_node('face_follower')
+            self.get_param = rospy.get_param
+            self.logger = rospy
+        else:
+            rclpy.init()
+            self.node = rclpy.create_node('face_follower')
+            self.get_param = self.node.get_parameter
+            self.logger = self.node.get_logger()
+
+        self.initialize_parameters()
+        self.setup_ros_communication()
+
+    def initialize_parameters(self):
         self.FOV_WIDTH = 35.2 * math.pi / 180
         self.FOV_HEIGHT = 21.6 * math.pi / 180
         self.count_not_found = 0
@@ -54,24 +68,37 @@ class FaceFollower:
         self.accum_period_time = 0.0
         self.DEBUG_PRINT = False
 
-        self.current_joint_states_sub = rospy.Subscriber(
-            "/humanoid_robot_intelligence_control_system/goal_joint_states", JointState, self.current_joint_states_callback)
-        self.set_walking_command_pub = rospy.Publisher(
-            "/humanoid_robot_intelligence_control_system/walking/command", String, queue_size=1)
-        self.set_walking_param_pub = rospy.Publisher(
-            "/humanoid_robot_intelligence_control_system/walking/set_params", WalkingParam, queue_size=1)
-        self.get_walking_param_client = rospy.ServiceProxy(
-            "/humanoid_robot_intelligence_control_system/walking/get_params", GetWalkingParam)
+    def setup_ros_communication(self):
+        if self.ros_version == '1':
+            self.current_joint_states_sub = rospy.Subscriber(
+                "/humanoid_robot_intelligence_control_system/goal_joint_states", JointState, self.current_joint_states_callback)
+            self.set_walking_command_pub = rospy.Publisher(
+                "/humanoid_robot_intelligence_control_system/walking/command", String, queue_size=1)
+            self.set_walking_param_pub = rospy.Publisher(
+                "/humanoid_robot_intelligence_control_system/walking/set_params", WalkingParam, queue_size=1)
+            self.get_walking_param_client = rospy.ServiceProxy(
+                "/humanoid_robot_intelligence_control_system/walking/get_params", GetWalkingParam)
+            self.face_position_sub = rospy.Subscriber(
+                "/face_detector/face_position", Point, self.face_position_callback)
+            self.prev_time = rospy.Time.now()
+        else:
+            self.current_joint_states_sub = self.node.create_subscription(
+                JointState, "/humanoid_robot_intelligence_control_system/goal_joint_states", self.current_joint_states_callback, 10)
+            self.set_walking_command_pub = self.node.create_publisher(
+                String, "/humanoid_robot_intelligence_control_system/walking/command", 1)
+            self.set_walking_param_pub = self.node.create_publisher(
+                WalkingParam, "/humanoid_robot_intelligence_control_system/walking/set_params", 1)
+            self.get_walking_param_client = self.node.create_client(
+                GetWalkingParam, "/humanoid_robot_intelligence_control_system/walking/get_params")
+            self.face_position_sub = self.node.create_subscription(
+                Point, "/face_detector/face_position", self.face_position_callback, 10)
+            self.prev_time = self.node.get_clock().now()
 
-        self.face_position_sub = rospy.Subscriber(
-            "/face_detector/face_position", Point, self.face_position_callback)
-
-        self.prev_time = rospy.Time.now()
         self.current_walking_param = WalkingParam()
 
     def start_following(self):
         self.on_following = True
-        rospy.loginfo("Start Face following")
+        self.logger.info("Start Face following")
         self.set_walking_command("start")
         result = self.get_walking_param()
         if result:
@@ -84,7 +111,7 @@ class FaceFollower:
     def stop_following(self):
         self.on_following = False
         self.count_to_approach = 0
-        rospy.loginfo("Stop Face following")
+        self.logger.info("Stop Face following")
         self.set_walking_command("stop")
 
     def current_joint_states_callback(self, msg):
@@ -126,14 +153,18 @@ class FaceFollower:
         return fb_move, rl_angle
 
     def process_following(self, x_angle, y_angle, face_size):
-        curr_time = rospy.Time.now()
-        delta_time = (curr_time - self.prev_time).to_sec()
+        if self.ros_version == '1':
+            curr_time = rospy.Time.now()
+            delta_time = (curr_time - self.prev_time).to_sec()
+        else:
+            curr_time = self.node.get_clock().now()
+            delta_time = (curr_time - self.prev_time).nanoseconds / 1e9
         self.prev_time = curr_time
 
         self.count_not_found = 0
 
         if self.current_tilt == -10 and self.current_pan == -10:
-            rospy.logerr("Failed to get current angle of head joints.")
+            self.logger.error("Failed to get current angle of head joints.")
             self.set_walking_command("stop")
             self.on_following = False
             self.approach_face_position = "NotFound"
@@ -170,4 +201,70 @@ class FaceFollower:
             self.set_walking_param(self.IN_PLACE_FB_STEP, 0, 0, True)
         msg = String()
         msg.data = command
-        self.set_walking_command_pub.
+        self.set_walking_command_pub.publish(msg)
+
+    def set_walking_param(self, x_move, y_move, rotation_angle, balance=False):
+        self.current_walking_param.balance_enable = balance
+        self.current_walking_param.x_move_amplitude = x_move + self.SPOT_FB_OFFSET
+        self.current_walking_param.y_move_amplitude = y_move + self.SPOT_RL_OFFSET
+        self.current_walking_param.angle_move_amplitude = rotation_angle + self.SPOT_ANGLE_OFFSET
+        self.set_walking_param_pub.publish(self.current_walking_param)
+        self.current_x_move = x_move
+        self.current_r_angle = rotation_angle
+
+    def get_walking_param(self):
+        if self.ros_version == '1':
+            try:
+                response = self.get_walking_param_client()
+                self.current_walking_param = response.parameters
+                return True
+            except rospy.ServiceException as e:
+                self.logger.error("Failed to get walking parameters: %s" % e)
+                return False
+        else:
+            future = self.get_walking_param_client.call_async(GetWalkingParam.Request())
+            rclpy.spin_until_future_complete(self.node, future)
+            if future.result() is not None:
+                self.current_walking_param = future.result().parameters
+                return True
+            else:
+                self.logger.error('Service call failed %r' % (future.exception(),))
+                return False
+
+    def run(self):
+        if self.ros_version == '1':
+            rate = rospy.Rate(30)  # 30Hz
+            while not rospy.is_shutdown():
+                if self.on_following:
+                    self.process_following(self.current_pan, self.current_tilt, 0.1)
+                rate.sleep()
+        else:
+            while rclpy.ok():
+                if self.on_following:
+                    self.process_following(self.current_pan, self.current_tilt, 0.1)
+                rclpy.spin_once(self.node, timeout_sec=0.03)
+
+def main(ros_version):
+    try:
+        follower = FaceFollower(ros_version)
+        follower.start_following()
+        follower.run()
+    except Exception as e:
+        if ros_version == '1':
+            rospy.logerr(f"An error occurred: {e}")
+        else:
+            rclpy.shutdown()
+            print(f"An error occurred: {e}")
+
+if __name__ == '__main__':
+    ros_version = os.getenv("ROS_VERSION")
+    if ros_version == "1":
+        import rospy
+    elif ros_version == "2":
+        import rclpy
+        from rclpy.node import Node
+    else:
+        print("Unsupported ROS version. Please set the ROS_VERSION environment variable to '1' for ROS 1 or '2' for ROS 2.")
+        sys.exit(1)
+    
+    main(ros_version)

@@ -13,20 +13,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+
 import os
 import sys
 import subprocess
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
 
 def ros1_launch_description():
     # Get command-line arguments
     args = sys.argv[1:]
     
     # Construct the ROS 1 launch command
-    roslaunch_command = ["roslaunch", "humanoid_robot_intelligence_control_system_object_detector", "object_detector_processor.launch"] + args
+    roslaunch_command = ["roslaunch", "humanoid_robot_intelligence_control_system_configure", "object_follow.launch"] + args
     
     roslaunch_command.extend([
         "usb_cam", "usb_cam_node", "name:=camera",
@@ -39,11 +38,11 @@ def ros1_launch_description():
     ])
     
     roslaunch_command.extend([
-        "ros_web_api_bellande_2d_computer_vision", "bellande_2d_computer_vision_object_detection.py", "name:=object_detection_node"
+        "humanoid_robot_intelligence_control_system_object_detector", "object_detection_processor.py", "name:=object_detection_processor_node"
     ])
     
     roslaunch_command.extend([
-        "humanoid_robot_intelligence_control_system_ball_detector", "object_detection_processor.py", "name:=object_detection_processor_node"
+        "humanoid_robot_intelligence_control_system_configure", "object_follower.py", "name:=object_follower_node"
     ])
     
     roslaunch_command.extend([
@@ -53,6 +52,7 @@ def ros1_launch_description():
     
     # Execute the launch command
     subprocess.call(roslaunch_command)
+
 
 def ros2_launch_description():
     nodes_to_launch = []
@@ -73,19 +73,23 @@ def ros2_launch_description():
     ))
     
     nodes_to_launch.append(Node(
-        package='ros_web_api_bellande_2d_computer_vision',
-        executable='bellande_2d_computer_vision_object_detection.py',
-        name='object_detection_node',
-        output='screen',
-        remappings=[('camera/image_raw', '/usb_cam/image_raw')]
-    ))
-    
-    nodes_to_launch.append(Node(
         package='humanoid_robot_intelligence_control_system_object_detector',
         executable='object_detection_processor.py',
         name='object_detection_processor_node',
         output='screen',
         parameters=[{'yaml_path': '$(find ros_web_api_bellande_2d_computer_vision)/yaml/object_detection_params.yaml'}]
+    ))
+    
+    nodes_to_launch.append(Node(
+        package='humanoid_robot_intelligence_control_system_configure',
+        executable='object_follower.py',
+        name='object_follower_node',
+        output='screen',
+        parameters=[{
+            'p_gain': 0.4,
+            'i_gain': 0.0,
+            'd_gain': 0.0
+        }]
     ))
     
     nodes_to_launch.append(Node(
