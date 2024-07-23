@@ -13,7 +13,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#!/usr/bin/env python3
 
 import os
 import sys
@@ -26,7 +25,7 @@ def ros1_launch_description():
     args = sys.argv[1:]
     
     # Construct the ROS 1 launch command
-    roslaunch_command = ["roslaunch", "humanoid_robot_intelligence_control_system_configure", "object_tracker.launch"] + args
+    roslaunch_command = ["roslaunch", "humanoid_robot_intelligence_control_system_configure", "face_follow.launch"] + args
     
     roslaunch_command.extend([
         "usb_cam", "usb_cam_node", "name:=camera",
@@ -39,20 +38,21 @@ def ros1_launch_description():
     ])
     
     roslaunch_command.extend([
-        "humanoid_robot_intelligence_control_system_object_detector", "object_detection_processor.py", "name:=object_detection_processor_node"
+        "humanoid_robot_intelligence_control_system_face_tracker", "face_detection_processor.py", "name:=face_detection_processor_node"
     ])
     
     roslaunch_command.extend([
-        "humanoid_robot_intelligence_control_system_configure", "object_tracker.py", "name:=object_tracker_node"
+        "humanoid_robot_intelligence_control_system_configure", "face_tracker.py", "name:=face_tracker_node"
     ])
     
     roslaunch_command.extend([
         "rviz", "rviz", "name:=rviz",
-        "args:=-d $(find humanoid_robot_intelligence_control_system_object_detector)/rviz/object_tracking_visualization.rviz"
+        "args:=-d $(find ros_web_api_bellande_2d_computer_vision)/rviz/visualization.rviz"
     ])
     
     # Execute the launch command
     subprocess.call(roslaunch_command)
+
 
 def ros2_launch_description():
     nodes_to_launch = []
@@ -73,17 +73,17 @@ def ros2_launch_description():
     ))
     
     nodes_to_launch.append(Node(
-        package='humanoid_robot_intelligence_control_system_object_detector',
-        executable='object_detection_processor.py',
-        name='object_detection_processor_node',
+        package='humanoid_robot_intelligence_control_system_face_tracker',
+        executable='face_detection_processor.py',
+        name='face_detection_processor_node',
         output='screen',
-        parameters=[{'yaml_path': '$(find humanoid_robot_intelligence_control_system_object_detector)/config/object_detection_params.yaml'}]
+        parameters=[{'yaml_path': '$(find ros_web_api_bellande_2d_computer_vision)/yaml/face_detection_params.yaml'}]
     ))
     
     nodes_to_launch.append(Node(
-        package='humanoid_robot_intelligence_control_system_object_detector',
-        executable='object_tracker.py',
-        name='object_tracker_node',
+        package='humanoid_robot_intelligence_control_system_configure',
+        executable='face_tracker.py',
+        name='face_tracker_node',
         output='screen',
         parameters=[{
             'p_gain': 0.4,
@@ -96,7 +96,7 @@ def ros2_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz',
-        arguments=['-d', '$(find humanoid_robot_intelligence_control_system_object_detector)/rviz/object_tracking_visualization.rviz']
+        arguments=['-d', '$(find ros_web_api_bellande_2d_computer_vision)/rviz/visualization.rviz']
     ))
     
     return LaunchDescription(nodes_to_launch)

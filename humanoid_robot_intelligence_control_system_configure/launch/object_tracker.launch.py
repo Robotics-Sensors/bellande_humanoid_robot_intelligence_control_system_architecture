@@ -42,7 +42,7 @@ def ros1_launch_description():
     ])
     
     roslaunch_command.extend([
-        "humanoid_robot_intelligence_control_system_configure", "object_follower.py", "name:=object_follower_node"
+        "humanoid_robot_intelligence_control_system_configure", "object_tracker.py", "name:=object_tracker_node"
     ])
     
     roslaunch_command.extend([
@@ -82,8 +82,8 @@ def ros2_launch_description():
     
     nodes_to_launch.append(Node(
         package='humanoid_robot_intelligence_control_system_configure',
-        executable='object_follower.py',
-        name='object_follower_node',
+        executable='object_tracker.py',
+        name='object_tracker_node',
         output='screen',
         parameters=[{
             'p_gain': 0.4,
