@@ -24,6 +24,7 @@ from geometry_msgs.msg import Point
 from humanoid_robot_intelligence_control_system_walking_module_msgs.msg import WalkingParam
 from humanoid_robot_intelligence_control_system_walking_module_msgs.srv import GetWalkingParam
 
+
 class FaceFollower:
     def __init__(self, ros_version):
         self.ros_version = ros_version
@@ -39,6 +40,7 @@ class FaceFollower:
 
         self.initialize_parameters()
         self.setup_ros_communication()
+
 
     def initialize_parameters(self):
         self.FOV_WIDTH = 35.2 * math.pi / 180
@@ -233,7 +235,7 @@ class FaceFollower:
 
     def run(self):
         if self.ros_version == '1':
-            rate = rospy.Rate(30)  # 30Hz
+            rate = rospy.Rate(30)
             while not rospy.is_shutdown():
                 if self.on_following:
                     self.process_following(self.current_pan, self.current_tilt, 0.1)
@@ -243,6 +245,7 @@ class FaceFollower:
                 if self.on_following:
                     self.process_following(self.current_pan, self.current_tilt, 0.1)
                 rclpy.spin_once(self.node, timeout_sec=0.03)
+
 
 def main(ros_version):
     try:
@@ -256,15 +259,26 @@ def main(ros_version):
             rclpy.shutdown()
             print(f"An error occurred: {e}")
 
+
+
 if __name__ == '__main__':
     ros_version = os.getenv("ROS_VERSION")
     if ros_version == "1":
-        import rospy
+        try:
+            import rospy
+            main(ros_version)
+        except rospy.ROSInterruptException:
+            print("Error in ROS1 main")
+    
     elif ros_version == "2":
-        import rclpy
-        from rclpy.node import Node
+        try:
+            import rclpy
+            from rclpy.node import Node
+            main(ros_version)
+        except KeyboardInterrupt:
+            rclpy.shutdown()
+            print("Error in ROS1 main")
+        
     else:
         print("Unsupported ROS version. Please set the ROS_VERSION environment variable to '1' for ROS 1 or '2' for ROS 2.")
         sys.exit(1)
-    
-    main(ros_version)
