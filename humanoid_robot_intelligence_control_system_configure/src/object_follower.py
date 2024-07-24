@@ -24,8 +24,9 @@ from geometry_msgs.msg import Point
 from humanoid_robot_intelligence_control_system_walking_module_msgs.msg import WalkingParam
 from humanoid_robot_intelligence_control_system_walking_module_msgs.srv import GetWalkingParam
 
-from humanoid_robot_intelligence_control_system_detection.follower import calculate_distance_to_object, calculate_footstep, calculate_delta_time
+from humanoid_robot_intelligence_control_system_detection.follower import calculate_distance_to, calculate_footstep, calculate_delta_time
 from humanoid_robot_intelligence_control_system_detection.follower_config import FollowerConfig, FollowerInitializeConfig
+
 
 class ObjectFollower:
     def __init__(self, ros_version):
@@ -116,7 +117,7 @@ class ObjectFollower:
 
         self.initialize_config.approach_object_position = "OutOfRange"
 
-        distance_to_object = calculate_distance_to_object(
+        distance_to_object = calculate_distance_to(
             self.config.CAMERA_HEIGHT, self.initialize_config.current_tilt, self.config.hip_pitch_offset, object_size)
 
         distance_to_approach = 0.22
