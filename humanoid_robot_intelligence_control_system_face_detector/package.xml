@@ -16,10 +16,10 @@ the License.
 -->
 
 <package format="3">
-  <name>humanoid_robot_intelligence_control_system_object_detector</name>
+  <name>humanoid_robot_intelligence_control_system_face_detector</name>
   <version>0.0.1</version>
   <description>
-    This Package is for Object Detection, detecting objects like tools, or utilities
+    This Package is for Object Detection, detecting faces like tools, or utilities
   </description>
   <license>Apache 2.0</license>
   <maintainer email="ronaldsonbellande@gmail.com">Ronaldson Bellande</maintainer>

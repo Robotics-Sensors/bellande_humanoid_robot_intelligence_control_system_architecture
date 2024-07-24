@@ -13,7 +13,7 @@
 # the License.
 
 cmake_minimum_required(VERSION 3.0.2)
-project(humanoid_robot_intelligence_control_system_object_detector)
+project(humanoid_robot_intelligence_control_system_speech_detector)
 
 if($ENV{ROS_VERSION} EQUAL 1)
   find_package(catkin REQUIRED COMPONENTS
@@ -47,7 +47,7 @@ if($ENV{ROS_VERSION} EQUAL 1)
   catkin_python_setup()
 
   catkin_install_python(PROGRAMS
-    src/object_detection_processor.py
+    src/speech_detection_processor.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   )
 
@@ -59,7 +59,7 @@ else()
   ament_python_install_package(${PROJECT_NAME})
 
   install(PROGRAMS
-    src/object_detection_processor.py
+    src/speech_detection_processor.py
     DESTINATION lib/${PROJECT_NAME}
   )
 
