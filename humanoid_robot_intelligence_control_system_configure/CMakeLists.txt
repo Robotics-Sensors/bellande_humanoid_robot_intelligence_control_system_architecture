@@ -13,7 +13,7 @@
 # the License.
 
 cmake_minimum_required(VERSION 3.0.2)
-project(humanoid_robot_intelligence_control_system_object_detector)
+project(humanoid_robot_intelligence_control_system_configure)
 
 if($ENV{ROS_VERSION} EQUAL 1)
   find_package(catkin REQUIRED COMPONENTS
