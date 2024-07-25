@@ -17,7 +17,7 @@
 
 import math
 
-def calculate_distance_to_object(camera_height, tilt, hip_pitch_offset, object_size):
+def calculate_distance_to(camera_height, tilt, hip_pitch_offset, object_size):
     distance = camera_height * math.tan(math.pi * 0.5 + tilt - hip_pitch_offset - object_size)
     return abs(distance)
 

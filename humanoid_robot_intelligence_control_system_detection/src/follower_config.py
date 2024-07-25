@@ -58,6 +58,92 @@ class FollowerConfig:
         self.curr_period_time = get_param('curr_period_time', self.curr_period_time)
         self.DEBUG_PRINT = get_param('debug_print', self.DEBUG_PRINT)
 
+    def reset(self):
+        """Reset all values to their initial state."""
+        self.__init__()
+
+    def set_fov(self, width, height):
+        """Set the field of view."""
+        self.FOV_WIDTH = width
+        self.FOV_HEIGHT = height
+
+    def set_camera_height(self, height):
+        """Set the camera height."""
+        self.CAMERA_HEIGHT = height
+
+    def set_thresholds(self, not_found_threshold):
+        """Set the thresholds."""
+        self.NOT_FOUND_THRESHOLD = not_found_threshold
+
+    def set_step_parameters(self, max_fb, max_rl, in_place_fb, min_fb, min_rl, unit_fb, unit_rl):
+        """Set the step parameters."""
+        self.MAX_FB_STEP = max_fb
+        self.MAX_RL_TURN = max_rl
+        self.IN_PLACE_FB_STEP = in_place_fb
+        self.MIN_FB_STEP = min_fb
+        self.MIN_RL_TURN = min_rl
+        self.UNIT_FB_STEP = unit_fb
+        self.UNIT_RL_TURN = unit_rl
+
+    def set_spot_offsets(self, fb_offset, rl_offset, angle_offset):
+        """Set the spot offsets."""
+        self.SPOT_FB_OFFSET = fb_offset
+        self.SPOT_RL_OFFSET = rl_offset
+        self.SPOT_ANGLE_OFFSET = angle_offset
+
+    def set_hip_pitch_offset(self, offset):
+        """Set the hip pitch offset."""
+        self.hip_pitch_offset = offset
+
+    def set_period_time(self, period_time):
+        """Set the current period time."""
+        self.curr_period_time = period_time
+
+    def update_accum_period_time(self, delta_time):
+        """Update the accumulated period time."""
+        self.accum_period_time += delta_time
+        if self.accum_period_time > (self.curr_period_time / 4):
+            self.accum_period_time = 0.0
+        return self.accum_period_time
+
+    def reset_accum_period_time(self):
+        """Reset the accumulated period time."""
+        self.accum_period_time = 0.0
+
+    def set_debug_print(self, debug_print):
+        """Set the debug print flag."""
+        self.DEBUG_PRINT = debug_print
+
+    def get_config_dict(self):
+        """Return a dictionary of all configuration parameters."""
+        return {
+            'FOV_WIDTH': self.FOV_WIDTH,
+            'FOV_HEIGHT': self.FOV_HEIGHT,
+            'CAMERA_HEIGHT': self.CAMERA_HEIGHT,
+            'NOT_FOUND_THRESHOLD': self.NOT_FOUND_THRESHOLD,
+            'MAX_FB_STEP': self.MAX_FB_STEP,
+            'MAX_RL_TURN': self.MAX_RL_TURN,
+            'IN_PLACE_FB_STEP': self.IN_PLACE_FB_STEP,
+            'MIN_FB_STEP': self.MIN_FB_STEP,
+            'MIN_RL_TURN': self.MIN_RL_TURN,
+            'UNIT_FB_STEP': self.UNIT_FB_STEP,
+            'UNIT_RL_TURN': self.UNIT_RL_TURN,
+            'SPOT_FB_OFFSET': self.SPOT_FB_OFFSET,
+            'SPOT_RL_OFFSET': self.SPOT_RL_OFFSET,
+            'SPOT_ANGLE_OFFSET': self.SPOT_ANGLE_OFFSET,
+            'hip_pitch_offset': self.hip_pitch_offset,
+            'curr_period_time': self.curr_period_time,
+            'accum_period_time': self.accum_period_time,
+            'DEBUG_PRINT': self.DEBUG_PRINT
+        }
+
+    def load_config_dict(self, config_dict):
+        """Load configuration from a dictionary."""
+        for key, value in config_dict.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
+
+
 
 class FollowerInitializeConfig:
     def __init__(self):

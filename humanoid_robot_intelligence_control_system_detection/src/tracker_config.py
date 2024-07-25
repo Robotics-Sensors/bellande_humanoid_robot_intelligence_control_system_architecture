@@ -40,6 +40,104 @@ class TrackerConfig:
         self.i_gain = get_param('i_gain', self.i_gain)
         self.d_gain = get_param('d_gain', self.d_gain)
 
+    def reset(self):
+        """Reset all values to their initial state."""
+        self.__init__()
+
+    def set_fov(self, width, height):
+        """Set the field of view."""
+        self.FOV_WIDTH = width
+        self.FOV_HEIGHT = height
+
+    def set_thresholds(self, not_found_threshold, waiting_threshold):
+        """Set the thresholds."""
+        self.NOT_FOUND_THRESHOLD = not_found_threshold
+        self.WAITING_THRESHOLD = waiting_threshold
+
+    def set_use_head_scan(self, use_head_scan):
+        """Set whether to use head scan."""
+        self.use_head_scan = use_head_scan
+
+    def set_debug_print(self, debug_print):
+        """Set the debug print flag."""
+        self.DEBUG_PRINT = debug_print
+
+    def set_pid_gains(self, p_gain, i_gain, d_gain):
+        """Set the PID gains."""
+        self.p_gain = p_gain
+        self.i_gain = i_gain
+        self.d_gain = d_gain
+
+    def get_pid_gains(self):
+        """Get the PID gains."""
+        return self.p_gain, self.i_gain, self.d_gain
+
+    def adjust_pid_gains(self, p_adjust=0, i_adjust=0, d_adjust=0):
+        """Adjust the PID gains by the given amounts."""
+        self.p_gain += p_adjust
+        self.i_gain += i_adjust
+        self.d_gain += d_adjust
+
+    def get_config_dict(self):
+        """Return a dictionary of all configuration parameters."""
+        return {
+            'FOV_WIDTH': self.FOV_WIDTH,
+            'FOV_HEIGHT': self.FOV_HEIGHT,
+            'NOT_FOUND_THRESHOLD': self.NOT_FOUND_THRESHOLD,
+            'WAITING_THRESHOLD': self.WAITING_THRESHOLD,
+            'use_head_scan': self.use_head_scan,
+            'DEBUG_PRINT': self.DEBUG_PRINT,
+            'p_gain': self.p_gain,
+            'i_gain': self.i_gain,
+            'd_gain': self.d_gain
+        }
+
+    def load_config_dict(self, config_dict):
+        """Load configuration from a dictionary."""
+        for key, value in config_dict.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
+
+    def validate_config(self):
+        """Validate the configuration parameters."""
+        assert 0 < self.FOV_WIDTH < math.pi, "FOV_WIDTH must be between 0 and pi"
+        assert 0 < self.FOV_HEIGHT < math.pi, "FOV_HEIGHT must be between 0 and pi"
+        assert self.NOT_FOUND_THRESHOLD > 0, "NOT_FOUND_THRESHOLD must be positive"
+        assert self.WAITING_THRESHOLD > 0, "WAITING_THRESHOLD must be positive"
+        assert isinstance(self.use_head_scan, bool), "use_head_scan must be a boolean"
+        assert isinstance(self.DEBUG_PRINT, bool), "DEBUG_PRINT must be a boolean"
+        assert self.p_gain >= 0, "p_gain must be non-negative"
+        assert self.i_gain >= 0, "i_gain must be non-negative"
+        assert self.d_gain >= 0, "d_gain must be non-negative"
+
+    def print_config(self):
+        """Print the current configuration."""
+        for key, value in self.get_config_dict().items():
+            print(f"{key}: {value}")
+
+    def to_ros_param(self):
+        """Convert the configuration to a format suitable for ROS parameters."""
+        return {
+            'tracker': {
+                'fov': {
+                    'width': self.FOV_WIDTH,
+                    'height': self.FOV_HEIGHT
+                },
+                'thresholds': {
+                    'not_found': self.NOT_FOUND_THRESHOLD,
+                    'waiting': self.WAITING_THRESHOLD
+                },
+                'use_head_scan': self.use_head_scan,
+                'debug_print': self.DEBUG_PRINT,
+                'pid': {
+                    'p': self.p_gain,
+                    'i': self.i_gain,
+                    'd': self.d_gain
+                }
+            }
+        }
+
+
 
 class TrackerInitializeConfig:
     def __init__(self):
