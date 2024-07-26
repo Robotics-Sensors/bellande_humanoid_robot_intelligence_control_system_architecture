@@ -18,8 +18,8 @@ from catkin_pkg.python_setup import generate_distutils_setup
 
 # fetch values from package.xml
 setup_args = generate_distutils_setup(
-    scripts=['src/object_detection_processor.py'],
-    packages=['humanoid_robot_intelligence_control_system_object_detector'],
+    scripts=["src/MovementController.py", "src/HumanoidRobotController.py"],
+    packages=['humanoid_robot_intelligence_control_system_movement'],
     package_dir={'': 'src'},
 )
 
