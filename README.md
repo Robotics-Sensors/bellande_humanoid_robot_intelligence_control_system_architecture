@@ -1,4 +1,4 @@
-# Welcome to the {BR&SRI} Humanoid Robot Intelligence Control System Architecture
+# Welcome to the {BRSRI} Bellande Humanoid Robot Intelligence Control System Architecture
 
 ## 🤖 Explore Humanoid Robot Intelligence with Us!
 Welcome to the {BR&SRI} Humanoid Robot Intelligence Control System architecture repository! Here, we invite you to delve into the fascinating world of humanoid robotics, showcasing the innovative capabilities of our intelligent control system.
