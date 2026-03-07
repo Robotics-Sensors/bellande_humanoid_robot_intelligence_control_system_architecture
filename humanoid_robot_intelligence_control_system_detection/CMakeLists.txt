@@ -12,29 +12,21 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.8)
 project(humanoid_robot_intelligence_control_system_detection)
 
 if($ENV{ROS_VERSION} EQUAL 1)
   find_package(catkin REQUIRED COMPONENTS
     rospy
   )
-
+  
   catkin_package(
     CATKIN_DEPENDS
       rospy
   )
-
-else()
-  find_package(ament_cmake REQUIRED)
-  find_package(ament_cmake_python REQUIRED)
-  find_package(rclpy REQUIRED)
-  find_package(std_msgs REQUIRED)
-endif()
-
-if($ENV{ROS_VERSION} EQUAL 1)
+  
   catkin_python_setup()
-
+  
   catkin_install_python(PROGRAMS
     src/follower.py
     src/follower_config.py
@@ -42,14 +34,17 @@ if($ENV{ROS_VERSION} EQUAL 1)
     src/tracker_config.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
   )
-
-  install(DIRECTORY config launch rviz
+  
+  install(DIRECTORY config rviz
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
   )
-
+  
 else()
-  ament_python_install_package(${PROJECT_NAME})
-
+  find_package(ament_cmake REQUIRED)
+  find_package(ament_cmake_python REQUIRED)
+  find_package(rclpy REQUIRED)
+  find_package(std_msgs REQUIRED)
+  
   install(PROGRAMS
     src/follower.py
     src/follower_config.py
@@ -57,10 +52,10 @@ else()
     src/tracker_config.py
     DESTINATION lib/${PROJECT_NAME}
   )
-
-  install(DIRECTORY config launch rviz
+  
+  install(DIRECTORY config rviz
     DESTINATION share/${PROJECT_NAME}
   )
-
+  
   ament_package()
 endif()

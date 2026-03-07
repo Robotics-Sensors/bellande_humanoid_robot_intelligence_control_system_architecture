@@ -12,7 +12,7 @@
 # License for the specific language governing permissions and limitations under
 # the License.
 
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.8)
 project(humanoid_robot_intelligence_control_system_configure)
 
 if($ENV{ROS_VERSION} EQUAL 1)
@@ -23,7 +23,7 @@ if($ENV{ROS_VERSION} EQUAL 1)
     geometry_msgs
     cv_bridge
   )
-
+  
   catkin_package(
     CATKIN_DEPENDS
       rospy
@@ -32,7 +32,21 @@ if($ENV{ROS_VERSION} EQUAL 1)
       geometry_msgs
       cv_bridge
   )
-
+  
+  catkin_python_setup()
+  
+  catkin_install_python(PROGRAMS
+    src/face_tracker.py
+    src/face_follower.py
+    src/object_tracker.py
+    src/object_follower.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+  )
+  
+  install(DIRECTORY launch
+    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+  )
+  
 else()
   find_package(ament_cmake REQUIRED)
   find_package(ament_cmake_python REQUIRED)
@@ -41,26 +55,7 @@ else()
   find_package(sensor_msgs REQUIRED)
   find_package(geometry_msgs REQUIRED)
   find_package(cv_bridge REQUIRED)
-endif()
-
-if($ENV{ROS_VERSION} EQUAL 1)
-  catkin_python_setup()
-
-  catkin_install_python(PROGRAMS
-    src/face_tracker.py
-    src/face_follower.py
-    src/object_tracker.py
-    src/object_follower.py
-    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-  )
-
-  install(DIRECTORY config launch rviz
-    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-  )
-
-else()
-  ament_python_install_package(${PROJECT_NAME})
-
+  
   install(PROGRAMS
     src/face_tracker.py
     src/face_follower.py
@@ -68,10 +63,10 @@ else()
     src/object_follower.py
     DESTINATION lib/${PROJECT_NAME}
   )
-
-  install(DIRECTORY config launch rviz
+  
+  install(DIRECTORY launch
     DESTINATION share/${PROJECT_NAME}
   )
-
+  
   ament_package()
 endif()
